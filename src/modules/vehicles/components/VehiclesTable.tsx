@@ -56,7 +56,6 @@ const VehiclesTable = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <CustomTableHeaderCell>Driver</CustomTableHeaderCell>
               <CustomTableHeaderCell>Plate</CustomTableHeaderCell>
               <CustomTableHeaderCell>Model</CustomTableHeaderCell>
               <CustomTableHeaderCell>Type</CustomTableHeaderCell>
@@ -69,7 +68,6 @@ const VehiclesTable = () => {
               <>
                 {vehiclesList?.map((vehicle) => (
                   <TableRow key={vehicle.id}>
-                    <CustomTableCell>{vehicle.driver_id}</CustomTableCell>
                     <CustomTableCell>{vehicle.plate}</CustomTableCell>
                     <CustomTableCell>{vehicle.model}</CustomTableCell>
                     <CustomTableCell>{vehicle.type}</CustomTableCell>

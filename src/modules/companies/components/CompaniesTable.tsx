@@ -72,15 +72,6 @@ const CompaniesTable = () => {
           ))}
         </TableBody>
       </Table>
-      <Pagination
-        shape="rounded"
-        color="primary"
-        count={Math.ceil(total / perPage) || 1}
-        page={page}
-        onChange={(_, newPage) => {
-          dispatch(setPage(newPage));
-        }}
-      />
     </TableContainer>
   );
 };
