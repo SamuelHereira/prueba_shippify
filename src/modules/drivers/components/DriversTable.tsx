@@ -6,6 +6,7 @@ import {
   TableCell,
   TableContainer,
   TableHead,
+  TablePagination,
   TableRow,
   Tooltip,
   Typography,
@@ -17,10 +18,16 @@ import {
   CustomTableCell,
   CustomTableHeaderCell,
 } from "../../shared/TableComponents";
-import { setDriverSelectedId } from "../slices/DriversSlice";
+import {
+  setDriverSelectedId,
+  setPage,
+  setPerPage,
+} from "../slices/DriversSlice";
 
 const DriversTable = () => {
-  const { driversList } = useAppSelector((state) => state.drivers);
+  const { driversList, page, perPage, total } = useAppSelector(
+    (state) => state.drivers
+  );
   const { companiesList } = useAppSelector((state) => state.companies);
 
   const dispatch = useAppDispatch();
@@ -75,6 +82,18 @@ const DriversTable = () => {
           ))}
         </TableBody>
       </Table>
+      <TablePagination
+        page={page - 1}
+        onPageChange={(event, newPage) => {
+          dispatch(setPage(newPage + 1));
+        }}
+        rowsPerPageOptions={[5, 10, 25]}
+        onRowsPerPageChange={(event) => {
+          dispatch(setPerPage(Number(event.target.value)));
+        }}
+        rowsPerPage={perPage}
+        count={total}
+      />
     </TableContainer>
   );
 };

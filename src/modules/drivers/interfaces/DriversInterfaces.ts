@@ -10,3 +10,8 @@ export interface Driver {
   status: string;
   creation_date: string;
 }
+
+export interface DriverResponse {
+  data: Driver[];
+  total: number;
+}

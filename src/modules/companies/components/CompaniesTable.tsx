@@ -19,7 +19,11 @@ import {
   CustomTableCell,
   CustomTableHeaderCell,
 } from "../../shared/TableComponents";
-import { setCompanySelectedId, setPage } from "../slices/companiesSlice";
+import {
+  setCompanySelectedId,
+  setPage,
+  setPerPage,
+} from "../slices/companiesSlice";
 
 const CompaniesTable = () => {
   const { companiesList, page, perPage, total } = useAppSelector(
@@ -72,6 +76,18 @@ const CompaniesTable = () => {
           ))}
         </TableBody>
       </Table>
+      <TablePagination
+        page={page - 1}
+        onPageChange={(event, newPage) => {
+          dispatch(setPage(newPage + 1));
+        }}
+        rowsPerPageOptions={[5, 10, 25]}
+        onRowsPerPageChange={(event) => {
+          dispatch(setPerPage(Number(event.target.value)));
+        }}
+        rowsPerPage={perPage}
+        count={total}
+      />
     </TableContainer>
   );
 };

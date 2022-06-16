@@ -7,3 +7,7 @@ export const vehiclesFormSchema = yup.object().shape({
   type: yup.string().required(),
   capacity: yup.string().required(),
 });
+
+//paginacion
+//agrgear conductor
+// al agregar vehiculo limpiar los inputs

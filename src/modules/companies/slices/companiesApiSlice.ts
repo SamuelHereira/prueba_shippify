@@ -9,14 +9,25 @@ export const companiesTags = middlewareApi.enhanceEndpoints({
 
 export const companiesApi = companiesTags.injectEndpoints({
   endpoints: (builder) => ({
-    getCompanies: builder.query<Company[], {}>({
-      queryFn: async ({}, { dispatch }) => {
+    getCompanies: builder.query<
+      Company[],
+      {
+        page: number;
+        limit: number;
+      }
+    >({
+      queryFn: async ({ page, limit }, { dispatch }) => {
         try {
-          const { data } = await mainApi.get<CompanyResponse>(`/company`);
+          const { data } = await mainApi.get<CompanyResponse>(`/company`, {
+            params: {
+              page,
+              limit,
+            },
+          });
 
           console.log(data);
 
-          dispatch(setCompaniesList(data.data));
+          // dispatch(setCompaniesList(data.data));
           dispatch(setTotal(data.total));
 
           return { data: Array.isArray(data.data) ? data.data : [] };
@@ -37,4 +48,4 @@ export const companiesApi = companiesTags.injectEndpoints({
   }),
 });
 
-export const { useGetCompaniesQuery } = companiesApi;
+export const { useGetCompaniesQuery, useLazyGetCompaniesQuery } = companiesApi;
